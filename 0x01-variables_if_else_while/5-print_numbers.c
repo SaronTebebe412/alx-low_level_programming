@@ -1,17 +1,16 @@
 #include <stdio.h>
 #include <stdlib.h>
 /**
- * main - Definer
+ * main - definer
  * Return: passer
  */
 int main(void)
 {
-	int x = '0';
+	int n = 0;
 
-	for (x = '0'; x <= '9'; x++)
-		putchar(x);
-	putchar('\n');
+	for (n = 0; n < 10; n++)
+		printf("%d", n);
+	printf("\n");
 	return (0);
 }
-
 
