@@ -2,23 +2,34 @@
 #include <stdlib.h>
 #include <time.h>
 /**
- * main - generates keygen.
- * Return: 0 Always.
+ * main - program that generates random valid
+ * passwords for the program 101-crackme
+ *
+ * Return: 0 (Success)
  */
 int main(void)
 {
-	int r = 0, c = 0;
-	time_t t;
+	int sum = 2772;
+	int n;
 
-	srand((unsigned int) time(&t));
-	while (c < 2772)
+	srand(time(0));
+	while (sum)
 	{
-		r = rand() % 128;
-		if ((c + r) > 2772)
-			break;
-		c = c + r;
-		printf("%c", r);
+		n = rand() % 100;
+		if (n <= 94)
+			n += 32;
+		else
+			continue;
+		if (sum - n == 0)
+		{
+			sum -= n;
+			printf("%c", n);
+		}
+		else if (sum - n - 32 > 0)
+		{
+			sum -= n;
+			printf("%c", n);
+		}
 	}
-	printf("%c\n", (2772 - c));
 	return (0);
 }
