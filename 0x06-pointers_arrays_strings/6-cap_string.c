@@ -1,36 +1,44 @@
-#include "main.h"
 /**
- *cap_string - capitalizes every first letter of a word in a string.
- *separators of words are:  space, tabulation,
- * new line, ,, ;, ., !, ?, ", (, ), {, and }.
- *@s: pointer to string.
+ * cap_string - a function that capitalizes
+ *              all words of a string
  *
- *Return: pointer to s.
+ * @s: pointer to char input array
+ *
+ * Return: @s
  */
+
 char *cap_string(char *s)
 {
-	int count;
+	int i = 0;
 
-/*  scan through string */
-	count = 0;
-	while (s[count] != '\0')
-	{/* if next character after count is a char , capitalise it */
-		if (s[0] >= 97 && s[0] <= 122)
+	/*iterate through our array values*/
+	while (s[i] != '\0')
+	{
+		/*check for any lowercase letters*/
+		if (s[i] >= 97 && s[i] <= 122)
 		{
-			s[0] = s[0] - 32;
-		}
-		if (s[count] == ' ' || s[count] == '\t' || s[count] == '\n'
-		    || s[count] == ',' || s[count] == ';' || s[count] == '.'
-		        || s[count] == '.' || s[count] == '!' || s[count] == '?'
-		    || s[count] == '"' || s[count] == '(' || s[count] == ')'
-		    || s[count] == '{' || s[count] == '}')
-		{
-			if (s[count + 1] >= 97 && s[count + 1] <= 122)
+			/**
+			 * if we have a null character
+			 * change its value to capital
+			 */
+			if (i == 0)
 			{
-				s[count + 1] = s[count + 1] - 32;
+				s[i] -= 32;
+			}
+			/**
+			 * if we find any character matching the below before any small
+			 * letter we change that value to a capital letter.
+			 */
+			if (s[i - 1] == 32 || s[i - 1] == 9 || s[i - 1] == 10 ||
+			    s[i - 1] == 44 || s[i - 1] == 59 || s[i - 1] == 46 ||
+			    s[i - 1] == 33 || s[i - 1] == 63 || s[i - 1] == 34 ||
+			    s[i - 1] == 40 || s[i - 1] == 41 || s[i - 1] == 123 ||
+			    s[i - 1] == 124)
+			{
+				s[i] -= 32;
 			}
 		}
-		count++;
+		i++;
 	}
 	return (s);
 }
